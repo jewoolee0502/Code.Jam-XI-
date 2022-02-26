@@ -19,19 +19,18 @@ The schema for the payload:
 '''
 
 class Predictions(Resource):
-    def post(self):
-        parser = reqparse.RequestParser() # initialize
+  
+  def post(self):
+      parser = reqparse.RequestParser() # initialize
+      parser.add_argument('screens', required=True) # add args
+      parser.add_argument('schedule', required=True)
         
-        parser.add_argument('screens', required=True) # add args
-        parser.add_argument('schedule', required=True)
+      args = parser.parse_args() # parse arguments to dict
         
-        args = parser.parse_args() # parse arguments to dict
+      return {
+          'Prediction': args.value()
+      }, 200
         
-        
-        
-        
-        
-
 api.add_resource(Predictions, '/predictions')
 
 if __name__ == "__main__":

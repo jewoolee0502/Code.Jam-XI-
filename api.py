@@ -26,14 +26,19 @@ The schema for the payload:
 key = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits)for _ in range(16))
 
 class Predictions(Resource):
-    def post(self):
-        parser = reqparse.RequestParser() # initialize
+  
+  def post(self):
+      parser = reqparse.RequestParser() # initialize
+      parser.add_argument('screens', required=True) # add args
+      parser.add_argument('schedule', required=True)
         
-        parser.add_argument('screens', required=True) # add args
-        parser.add_argument('schedule', required=True)
+      args = parser.parse_args() # parse arguments to dict
         
-        args = parser.parse_args() # parse arguments to dict
+      return {
+          'Prediction': args.value()
+      }, 200
         
+<<<<<<< HEAD
         accessKey = flask.request.args.get('access_token')
         
         if accessKey == key:
@@ -53,6 +58,8 @@ class Predictions(Resource):
 
         
 
+=======
+>>>>>>> 13b9377d26fabd340b2e24767c999eb41069c5fc
 api.add_resource(Predictions, '/predictions')
 
 if __name__ == "__main__":

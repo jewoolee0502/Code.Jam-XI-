@@ -29,13 +29,13 @@ class Predictions(Resource):
   
   def post(self):
       parser = reqparse.RequestParser() # initialize
-      parser.add_argument('screens', required=True) # add args
-      parser.add_argument('schedule', required=True)
+      parser.add_argument('screens') # add args
+      parser.add_argument('schedule')
         
       args = parser.parse_args() # parse arguments to dict
         
       return {
-          'Prediction': args.value()
+          'Prediction': '09090'
       }, 200
         
 <<<<<<< HEAD
